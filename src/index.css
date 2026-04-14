@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* ── WCAG 2.4.7 Focus Visible ─────────────────────────────────────────────────
+   Regla global: todos los elementos enfocables muestran un anillo visible
+   SÓLO cuando se navega con teclado (focus-visible), pero NO con ratón/touch.
+   El outline: none sólo suprime el anillo nativo del browser cuando el nuestro
+   ya está activo, evitando el doble anillo.
+   Color: #6366f1 (indigo-500) — contraste > 3:1 sobre fondos blancos y oscuros.
+   ─────────────────────────────────────────────────────────────────────────── */
+@layer base {
+  /* Eliminar outline nativo para que el nuestro sea el único */
+  *:focus {
+    outline: none;
+  }
+
+  /* Anillo visible global al navegar con teclado */
+  *:focus-visible {
+    outline: 3px solid #6366f1;
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+}
