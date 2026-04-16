@@ -21,7 +21,7 @@ export default function Home() {
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight drop-shadow-2xl tracking-tight">
               Bienvenidos al Podcast
             </h1>
-            <h2 className="text-2xl md:text-3xl lg:text-4xl text-indigo-200 mb-10 font-medium drop-shadow-md">Análisis de la era dorada de la TV</h2>
+            <p className="text-2xl md:text-3xl lg:text-4xl text-indigo-200 mb-10 font-medium drop-shadow-md">Análisis de la era dorada de la TV</p>
             
             <div className="bg-white/5 backdrop-blur-xl p-6 md:p-10 rounded-2xl border border-white/10 mb-12 max-w-3xl mx-auto text-indigo-50 shadow-2xl">
               <p className="leading-relaxed text-lg md:text-xl font-light">
@@ -74,7 +74,7 @@ export default function Home() {
       <section id="episodios" className="py-16 px-6 md:px-12 lg:px-24 border-t border-slate-200">
         <div className="mb-8 pl-4 border-l-4 border-indigo-500">
           <h2 className="text-3xl font-bold text-slate-800">Catálogo de Episodios</h2>
-          <p className="text-slate-600 mt-1">Selecciona un elemento para acceder al reproductor interactivo.</p>
+          <p className="text-slate-700 mt-1">Selecciona un elemento para acceder al reproductor interactivo.</p>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -103,7 +103,7 @@ export default function Home() {
                     {episode.title}
                   </Link>
                 </h3>
-                <p className="text-sm text-slate-600 line-clamp-3 mb-4">
+                <p className="text-sm text-slate-700 line-clamp-3 mb-4">
                   {episode.description}
                 </p>
                 <div className="mt-auto">
@@ -126,7 +126,7 @@ export default function Home() {
         <div className="max-w-2xl mx-auto bg-slate-50 border border-slate-200 rounded-lg p-8 shadow-sm">
           <div className="mb-6 border-b border-slate-200 pb-4">
             <h2 className="text-2xl font-bold text-slate-800">Buzón de Sugerencias</h2>
-            <p className="text-slate-600 text-sm mt-1">Envíanos tus propuestas para próximos episodios.</p>
+            <p className="text-slate-700 text-sm mt-1">Envíanos tus propuestas para próximos episodios.</p>
           </div>
           
           <form className="space-y-5">

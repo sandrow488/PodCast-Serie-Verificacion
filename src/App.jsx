@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Home from './pages/Home';
 import EpisodeDetails from './pages/EpisodeDetails';
 import Contact from './pages/Contact';
+import Informe from './pages/Informe';
 import InformePDF from './components/InformePDF';
 
 export default function App() {
@@ -14,7 +15,7 @@ export default function App() {
              muestra para que usuarios de teclado puedan saltar la cabecera.
         ──────────────────────────────────────────────────────────────────── */}
         <a
-          href="#contenido-principal"
+          href="#main-content"
           className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:bg-indigo-600 focus:text-white focus:font-semibold focus:px-5 focus:py-3 focus:rounded-lg focus:shadow-xl"
         >
           Saltar al contenido principal
@@ -57,23 +58,27 @@ export default function App() {
         </header>
 
         <div className="flex-grow w-full">
-          <main id="contenido-principal" className="w-full bg-white overflow-hidden">
+          <main id="main-content" className="w-full bg-white overflow-hidden">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/episodio/:id" element={<EpisodeDetails />} />
               <Route path="/contacto" element={<Contact />} />
+              <Route path="/informe" element={<Informe />} />
+              <Route path="/informe-documento" element={<InformePDF />} />
             </Routes>
           </main>
         </div>
 
         <footer className="bg-slate-800 text-slate-300 py-8 border-t-4 border-indigo-500 mt-auto">
           <div className="container mx-auto px-4 text-center">
-            <h3 className="text-lg font-semibold text-white mb-2">Podcast: Mis Series Imprescindibles</h3>
-            <p className="mb-4 text-sm text-slate-300">Sandro Pegoraro | 2º DAW</p>
+            <h2 className="text-lg font-semibold text-white mb-2">Podcast: Mis Series Imprescindibles</h2>
+            <p className="mb-4 text-sm text-slate-300">Sandro Pegoraro | 2do DAW</p>
             <hr className="border-slate-700 w-1/2 mx-auto mb-4" />
             {/* Botón de descarga de informe de accesibilidad (WCAG AA) */}
-            <div className="mt-2">
-              <InformePDF />
+            <div className="mt-2 text-center">
+              <Link to="/informe" className="inline-block text-indigo-400 hover:text-indigo-300 font-medium underline underline-offset-4 focus:outline-none focus:ring-2 focus:ring-indigo-300 rounded p-1">
+                Ver Informe Web de Accesibilidad Completo (PDF)
+              </Link>
             </div>
           </div>
         </footer>

@@ -10,8 +10,8 @@ export default function EpisodeDetails() {
     return (
       <div className="flex flex-col items-center justify-center p-16 text-center">
         <svg className="w-16 h-16 text-slate-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-        <h2 className="text-2xl font-bold mb-2 text-slate-800">Episodio no encontrado</h2>
-        <p className="text-slate-600 mb-6">El archivo solicitado no está disponible en la base de datos.</p>
+        <h1 className="text-2xl font-bold mb-2 text-slate-800">Episodio no encontrado</h1>
+        <p className="text-slate-700 mb-6">El archivo solicitado no está disponible en la base de datos.</p>
         <Link 
           to="/" 
           className="bg-slate-200 text-slate-700 hover:bg-slate-300 font-medium py-2 px-4 rounded transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400"
@@ -27,7 +27,7 @@ export default function EpisodeDetails() {
   return (
     <div className="p-6 md:p-10">
       <nav aria-label="Miga de pan" className="mb-8">
-        <ol className="flex text-sm text-slate-600" aria-label="Ruta de navegación actual">
+        <ol className="flex text-sm text-slate-700" aria-label="Ruta de navegación actual">
           <li>
             <Link to="/" className="hover:text-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 rounded px-1">Inicio</Link>
           </li>
@@ -47,7 +47,7 @@ export default function EpisodeDetails() {
             <h1 className="text-3xl md:text-4xl font-bold text-slate-800 mb-4 leading-tight">
               {episode.title}
             </h1>
-            <p className="text-lg text-slate-600 font-light border-l-4 border-slate-300 pl-4 py-1 italic">
+            <p className="text-lg text-slate-700 font-light border-l-4 border-slate-300 pl-4 py-1 italic">
               {episode.description}
             </p>
           </header>
@@ -61,7 +61,7 @@ export default function EpisodeDetails() {
             </div>
           )}
           <section aria-labelledby="audio-player-heading" className="bg-slate-50 p-6 rounded-lg border border-slate-200 shadow-inner mb-10">
-            <h2 id="audio-player-heading" className="text-sm font-bold text-slate-600 uppercase tracking-wider mb-4 flex items-center gap-2">
+            <h2 id="audio-player-heading" className="text-sm font-bold text-slate-700 uppercase tracking-wider mb-4 flex items-center gap-2">
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" /></svg>
               Reproducción Directa HTML5
             </h2>
@@ -76,7 +76,7 @@ export default function EpisodeDetails() {
                 Tu navegador no soporta el formato de audio seleccionado.
               </audio>
             </div>
-            <p className="text-xs text-slate-600 mt-2 text-center text-balance">
+            <p className="text-xs text-slate-700 mt-2 text-center text-balance">
               Para cumplir normativa de accesibilidad, el atributo <code>autoplay</code> está deshabilitado por defecto.
             </p>
           </section>
@@ -88,12 +88,16 @@ export default function EpisodeDetails() {
                 Transcripción del Episodio
               </h2>
             </div>
+            <p className="text-sm text-slate-700 mb-4 bg-indigo-50 p-4 rounded-md border border-indigo-100 italic flex items-start gap-2">
+              <svg className="w-5 h-5 text-indigo-600 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+              <span>Se dispone de esta transcripción textual completa del audio para garantizar la total accesibilidad del contenido a personas sordas, con problemas de audición o que no puedan reproducir contenido multimedia en este momento (Criterio WCAG 1.2.2).</span>
+            </p>
             
             <div 
               className="bg-white p-8 md:p-12 h-[500px] overflow-y-auto rounded-lg border border-slate-200 shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 text-lg leading-relaxed" 
               tabIndex="0"
               role="region"
-              aria-label="Transcripción completa del episodio — usa las teclas de flecha para desplazarte"
+              aria-label="Transcripción completa del episodio - usa las teclas de flecha para desplazarte"
             >
               <div className="mx-auto space-y-6 text-slate-700">
                 {transcriptParagraphs.map((paragraph, index) => {

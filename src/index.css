@@ -11,18 +11,32 @@ html {
    SÓLO cuando se navega con teclado (focus-visible), pero NO con ratón/touch.
    El outline: none sólo suprime el anillo nativo del browser cuando el nuestro
    ya está activo, evitando el doble anillo.
-   Color: #6366f1 (indigo-500) — contraste > 3:1 sobre fondos blancos y oscuros.
+   Color: #6366f1 (indigo-500) - contraste > 3:1 sobre fondos blancos y oscuros.
    ─────────────────────────────────────────────────────────────────────────── */
 @layer base {
+  /* Criterio WCAG 2.2 AA (Conformidad de Foco y Movimiento Reducido) */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    ::before,
+    ::after {
+      animation-delay: -1ms !important;
+      animation-duration: 1ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0s !important;
+      transition-delay: 0s !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
   /* Eliminar outline nativo para que el nuestro sea el único */
   *:focus {
     outline: none;
   }
 
-  /* Anillo visible global al navegar con teclado */
+  /* Anillo visible global al navegar con teclado: Altamente perceptible (WCAG 2.4.7 AA) */
   *:focus-visible {
-    outline: 3px solid #6366f1;
-    outline-offset: 3px;
+    outline: 4px solid #4338ca !important; /* indigo-700, gran contraste */
+    outline-offset: 4px !important;
     border-radius: 4px;
   }
 }

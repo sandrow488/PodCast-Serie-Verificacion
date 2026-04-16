@@ -78,7 +78,7 @@ export default function Contact() {
         {/* Encabezado de página */}
         <header className="mb-10 text-center">
           <h1 className="text-4xl font-black text-slate-800 mb-3">Contacto</h1>
-          <p className="text-slate-600 text-base max-w-lg mx-auto">
+          <p className="text-slate-700 text-base max-w-lg mx-auto">
             ¿Tienes una sugerencia, quieres colaborar o simplemente saludarnos?
             Rellena el formulario y te responderemos lo antes posible.
           </p>
@@ -123,7 +123,12 @@ export default function Contact() {
           </div>
         ) : (
           /* ─── Formulario ──────────────────────────────────────────────────── */
-          <div className="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm">
+          <div className="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm relative">
+            <div aria-live="assertive" className="sr-only">
+              {Object.keys(errors).length > 0 
+                ? `Atención: Se han encontrado ${Object.keys(errors).length} errores en el formulario. Por favor revisa los campos requeridos.` 
+                : ""}
+            </div>
             <form
               onSubmit={handleSubmit}
               noValidate
@@ -316,7 +321,7 @@ export default function Contact() {
                     {errors.mensaje}
                   </p>
                 ) : (
-                  <p id="mensaje-hint" className="mt-1 text-xs text-slate-600">
+                  <p id="mensaje-hint" className="mt-1 text-xs text-slate-700">
                     Mínimo 20 caracteres. Actualmente:{" "}
                     {form.mensaje.trim().length}
                   </p>
@@ -326,7 +331,7 @@ export default function Contact() {
               </fieldset>
 
               {/* Nota campos obligatorios */}
-              <p className="text-xs text-slate-600 mb-5">
+              <p className="text-xs text-slate-700 mb-5">
                 <span className="text-red-500" aria-hidden="true">
                   *
                 </span>{" "}
@@ -383,7 +388,7 @@ export default function Contact() {
               <span className="text-2xl" aria-hidden="true">
                 {item.icon}
               </span>
-              <p className="text-xs font-semibold text-slate-600 uppercase tracking-widest mt-2 mb-1">
+              <p className="text-xs font-semibold text-slate-700 uppercase tracking-widest mt-2 mb-1">
                 {item.label}
               </p>
               <p className="text-sm text-slate-700 font-medium">{item.value}</p>
