@@ -66,7 +66,7 @@ export default function InformePDF() {
         <section className="mb-8">
           <h3 className="text-base font-bold bg-gray-200 text-gray-800 p-1.5 mb-3 border-l-4 border-gray-500">ENLACES DEL PROYECTO</h3>
           <ul className="mb-6 pl-5 space-y-1 text-slate-800 list-disc marker:text-slate-500">
-            <li><strong>Despliegue en Netlify:</strong> https://podcastverificacion.netlify.app/contacto</li>
+            <li><strong>Despliegue en Netlify:</strong> https://podcastverificacion.netlify.app</li>
             <li><strong>Repositorio GitHub:</strong> https://github.com/sandrow488/PodCast-Serie-Verificacion.git</li>
           </ul>
           <p className="mb-4 text-slate-700 text-justify">
