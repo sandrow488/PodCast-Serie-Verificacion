@@ -347,37 +347,7 @@ export default function Contact() {
           </div>
         )}
 
-        <aside
-          className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-4 text-center"
-          aria-label="Información de contacto alternativa"
-        >
-          {[
-            { icon: "📧", label: "Email", value: "podcast@ejemplo.com" },
-            {
-              icon: "🎙️",
-              label: "Podcast",
-              value: "Mis Series Imprescindibles",
-            },
-            {
-              icon: "🏫",
-              label: "Autor",
-              value: "Sandro Pegoraro",
-            },
-          ].map((item) => (
-            <div
-              key={item.label}
-              className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm"
-            >
-              <span className="text-2xl" aria-hidden="true">
-                {item.icon}
-              </span>
-              <p className="text-xs font-semibold text-slate-700 uppercase tracking-widest mt-2 mb-1">
-                {item.label}
-              </p>
-              <p className="text-sm text-slate-700 font-medium">{item.value}</p>
-            </div>
-          ))}
-        </aside>
+        
       </div>
     </div>
   );
