@@ -7,16 +7,14 @@ export default function InformePDF() {
   const handleDownloadPdf = () => {
     const elemento = contentRef.current;
     
-    // Añadimos una clase temporal por si queremos ocultar cosas solo en el PDF
     document.documentElement.classList.add("pdf-mode");
  
     const opciones = {
-      margin: [15, 15, 15, 15], // Márgenes superior, derecho, inferior, izquierdo (en mm)
+      margin: [15, 15, 15, 15],
       filename: "informe-accesibilidad-misseries.pdf",
       image: { type: "jpeg", quality: 0.98 },
-      html2canvas: { scale: 2, useCORS: true }, // useCORS permite cargar imágenes externas sin fallos
+      html2canvas: { scale: 2, useCORS: true },
       jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
-      // Esta regla evita que los saltos de página corten los bloques a la mitad
       pagebreak: { mode: ['css', 'legacy'], avoid: ['section', 'header'] }
     };
  
@@ -33,278 +31,150 @@ export default function InformePDF() {
   };
 
   return (
-    <div className="bg-slate-100 min-h-screen py-8 px-4 w-full">
-      
-      {/* Botón flotante al inicio */}
-      <div className="max-w-4xl mx-auto mb-8 flex flex-col md:flex-row justify-between items-center bg-white p-4 shadow rounded-lg border-t-4 border-indigo-600 gap-4">
-        <p className="text-slate-600 font-semibold italic text-sm md:text-base text-center md:text-left">
-          Previsualización interactiva del documento maestro
+    <div className="bg-white min-h-screen py-6 px-4">
+      <div className="max-w-3xl mx-auto mb-6 flex flex-col sm:flex-row justify-between items-center border border-gray-300 bg-gray-50 p-3 gap-3">
+        <p className="text-gray-600 text-sm">
+          Previsualización del informe
         </p>
         <button
           onClick={handleDownloadPdf}
-          className="bg-indigo-600 text-white font-bold py-3 px-6 rounded-lg border border-indigo-800 hover:bg-indigo-700 shadow flex items-center gap-2 focus:ring-4 focus:ring-indigo-300 transition-all"
+          className="bg-blue-700 text-white font-semibold py-2 px-4 border border-blue-900 hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-400"
         >
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
-          </svg>
-          Descargar PDF Final
+          Descargar PDF
         </button>
       </div>
 
-      {/* Contenedor central simulando un papel A4, es el que se enviará a PDF */}
       <article
         ref={contentRef}
         id="informe-pdf"
-        className="max-w-4xl mx-auto bg-white text-black font-sans leading-relaxed border border-gray-300 p-8 md:p-12 shadow-xl"
+        className="max-w-3xl mx-auto bg-white text-black font-sans leading-relaxed border border-gray-300 p-8"
       >
-        <header className="mb-8 border-b-2 border-slate-900 pb-4">
-          <p className="text-slate-500 uppercase tracking-widest mb-2 font-bold text-sm">Disseny d'Interfícies Web</p>
-          <h1 className="text-3xl font-black mb-2 text-slate-900">INFORME DE AUDITORÍA DE ACCESIBILIDAD</h1>
-          <h2 className="text-xl mb-6 text-slate-700 font-medium">Proyecto React - Evaluación Técnica Completa Nivel AA</h2>
+        <header className="mb-6 border-b border-gray-400 pb-3">
           
-          <div className="text-sm mt-4 grid grid-cols-1 md:grid-cols-2 gap-2 bg-slate-50 p-4 rounded border border-slate-200">
-            <p><strong>Autor:</strong> Sandro Pegoraro</p>
+          <h1 className="text-2xl font-bold mb-1 text-gray-900">INFORME DE ACCESIBILIDAD</h1>
+          <h2 className="text-base mb-4 text-gray-600">Proyecto React</h2>
+          
+          <div className="text-sm mt-3 grid grid-cols-1 sm:grid-cols-2 gap-1 bg-gray-50 p-3 border border-gray-200">
+
+            <p><strong>Alumno:</strong> Sandro Pegoraro</p>
             <p><strong>Curso:</strong> 2º DAW</p>
             <p><strong>Fecha:</strong> {new Date().toLocaleDateString('es-ES')}</p>
-            <p><strong>Analista / Tutor:</strong> [Nombre del profesor]</p>
-            <p className="col-span-1 md:col-span-2"><strong>Cliente:</strong> Plataforma digital educativa (Mis Series Imprescindibles)</p>
+            <p><strong>Módulo:</strong> Diseño de Interfaces Web</p>
+            <p className="col-span-1 md:col-span-2"><strong>Proyecto:</strong> Mis Series Imprescindibles</p>
           </div>
         </header>
 
         <section className="mb-8">
-          <h3 className="text-xl font-bold bg-slate-200 text-slate-800 p-2 mb-4 border-l-4 border-slate-600">IDENTIFICACIÓN Y ENLACES OFICIALES DEL PROYECTO</h3>
+          <h3 className="text-base font-bold bg-gray-200 text-gray-800 p-1.5 mb-3 border-l-4 border-gray-500">ENLACES DEL PROYECTO</h3>
           <ul className="mb-6 pl-5 space-y-1 text-slate-800 list-disc marker:text-slate-500">
-            <li><strong>URL pública (entorno producción):</strong> https://podcast-serie-accesible.vercel.app</li>
-            <li><strong>Repositorio GitHub principal:</strong> https://github.com/SandroPegoraro/proyecto-accesible</li>
-            <li><strong>Branch analizada:</strong> main</li>
-            <li><strong>Commit base sin accesibilidad:</strong> https://github.com/SandroPegoraro/proyecto...</li>
-            <li><strong>Commit tras implementación accesibilidad:</strong> https://github.com/SandroPegoraro/proyecto...</li>
-            <li><strong>Comparación directa de cambios (diff):</strong> https://github.com/SandroPegoraro/...</li>
+            <li><strong>Despliegue en Netlify:</strong> https://podcast-serie-accesible.netlify.app</li>
+            <li><strong>Repositorio GitHub:</strong> https://github.com/SandroPegoraro/proyecto-accesible</li>
           </ul>
-          <h4 className="font-bold text-slate-900 mb-2">Descripción obligatoria:</h4>
           <p className="mb-4 text-slate-700 text-justify">
-            En este apartado debéis explicar brevemente la evolución del proyecto, describiendo cómo se encontraba inicialmente y cómo fue mejorando mediante commits progresivos. Debéis justificar por qué el historial demuestra desarrollo real y no modificación superficial final. Se debe explicar qué es un commit (registro de cambio en el historial del proyecto) y por qué la trazabilidad es importante en entornos profesionales.<br/>
-            Trazabilidad significa poder seguir el historial de cambios y entender qué se modificó, cuándo y por qué.
+            En este apartado explico la evolución del proyecto. Al principio la página web era muy básica y no cumplía con casi ningún requisito de accesibilidad. Fui mejorando el código poco a poco mediante distintos "commits". Un commit es básicamente guardar un cambio en el historial del proyecto. Así se puede ver claramente la evolución y qué archivos fui modificando paso a paso.
           </p>
         </section>
 
         <section className="mb-8">
-          <h3 className="text-xl font-bold bg-slate-200 text-slate-800 p-2 mb-4 border-l-4 border-slate-600">RESUMEN EJECUTIVO</h3>
+          <h3 className="text-base font-bold bg-gray-200 text-gray-800 p-1.5 mb-3 border-l-4 border-gray-500">INTRODUCCIÓN</h3>
           <p className="mb-4 text-slate-700">
-            Este documento presenta la auditoría técnica completa realizada sobre la aplicación web desarrollada con React 18 y desplegada en entorno de producción mediante Vercel.
+            Este PDF es un informe técnico sobre mi proyecto de React. El objetivo era cumplir con las normas de accesibilidad web (WCAG 2.2 nivel AA).
           </p>
-          <p className="mb-4 text-slate-700">
-            El análisis se basa en las WCAG 2.2 nivel AA.<br/>
-            WCAG (Web Content Accessibility Guidelines) son pautas internacionales que establecen criterios técnicos para garantizar accesibilidad digital.<br/>
-            Nivel AA es el estándar exigido en la mayoría de plataformas institucionales y servicios públicos.
-          </p>
-          <p className="mb-2 text-slate-700">La auditoría combina:</p>
-          <ul className="list-disc pl-8 mb-4 text-slate-800 marker:text-slate-500">
-            <li>Evaluación automática mediante Lighthouse, WAVE y Axe.</li>
-            <li>Evaluación manual mediante navegación exclusiva con teclado.</li>
-            <li>Revisión estructural del DOM.</li>
+          <p className="mb-2 text-slate-700">Para hacer esta auditoría he utilizado:</p>
+          <ul className="list-disc pl-6 mb-3 text-gray-800">
+            <li>Herramientas automáticas como Lighthouse en Chrome, WAVE y Axe.</li>
+            <li>Pruebas manuales navegando por toda la web usando únicamente el tabulador y el teclado.</li>
           </ul>
-          <p className="font-bold text-slate-800">
-            DOM (Document Object Model) es la representación estructural del HTML que el navegador interpreta y que utilizan tecnologías de asistencia.<br/>
-            Este informe demuestra no solo corrección técnica, sino comprensión profunda de accesibilidad como requisito estructural.
+        </section>
+
+        <section className="mb-8">
+          <h3 className="text-base font-bold bg-gray-200 text-gray-800 p-1.5 mb-3 border-l-4 border-gray-500">ESTRUCTURA DEL PROYECTO</h3>
+          <p className="mb-4 text-slate-700">
+            La web está hecha con React y está desplegada en Netlify. React es una librería que nos permite crear componentes, que son como piezas de lego que puedes volver a usar en diferentes partes de la página.
+          </p>
+          <p className="mb-4 text-slate-700">
+            Como he utilizado React, la web carga el contenido dinámicamente. Esto significa que la pantalla cambia sin tener que recargar la página entera en el navegador. Esto es muy rápido pero me dio problemas de accesibilidad porque los lectores de pantalla a veces no se enteran de las cosas que aparecen de repente en la pantalla (como cuando envías un mensaje en un formulario y sale un error). Por eso tuve que usar atributos especiales como "aria-live".
           </p>
         </section>
 
         <section className="mb-8">
-          <h3 className="text-xl font-bold bg-slate-200 text-slate-800 p-2 mb-4 border-l-4 border-slate-600">CONTEXTO TÉCNICO DEL PROYECTO</h3>
-          <p className="mb-4 text-slate-700">
-            La aplicación está desarrollada con React 19.<br/>
-            React es una librería JavaScript basada en arquitectura de componentes.<br/>
-            Un componente es una unidad independiente y reutilizable de interfaz.
-          </p>
-          <p className="mb-4 text-slate-700">
-            La aplicación utiliza renderizado dinámico.<br/>
-            Renderizado dinámico significa que partes del contenido se actualizan sin recargar la página completa.<br/>
-            Este comportamiento puede generar problemas de accesibilidad si no se gestionan correctamente los cambios dinámicos.<br/>
-            Por ello se implementaron soluciones específicas como aria-live.
-          </p>
-          <p className="mb-4 font-bold text-slate-800">
-            Aria-live es un atributo que permite anunciar cambios dinámicos a lectores de pantalla.
-          </p>
-          <h4 className="font-bold text-slate-900 mb-2">Descripción obligatoria:</h4>
-          <p className="mb-4 text-slate-700">
-            Explicar arquitectura del proyecto, estructura de carpetas, organización de componentes y cómo se integran las mejoras de accesibilidad dentro de la estructura React.
+          <h3 className="text-base font-bold bg-gray-200 text-gray-800 p-1.5 mb-3 border-l-4 border-gray-500">TESTEO INICIAL</h3>
+          
+          <h4 className="font-bold underline mb-2 text-red-700">Resultados de Lighthouse</h4>
+          <p className="mb-3 italic text-red-600 font-semibold">Nota inicial: 71/100.</p>
+          
+          <p className="mb-3 text-gray-700">
+            La primera vez que probé la web en Lighthouse saqué un 71. Me avisó de bastantes cosas por arreglar, sobre todo con contraste de colores, textos alternativos para las fotos, y etiquetas de formularios que no estaban bien puestas. Al usar el ordenador con teclado vi rápidamente que no se notaba cuándo tenía un botón seleccionado.
           </p>
         </section>
 
         <section className="mb-8">
-          <h3 className="text-xl font-bold bg-slate-200 text-slate-800 p-2 mb-4 border-l-4 border-slate-600">AUDITORÍA INICIAL</h3>
-          
-          <h4 className="font-bold text-lg mb-2 text-slate-900">Lighthouse</h4>
-          <p className="mb-4 italic text-rose-700 font-semibold">Resultado inicial: 71/100.</p>
-          
-          <p className="mb-2 text-slate-700">Lighthouse analiza automáticamente aspectos como:</p>
-          <ul className="list-disc pl-8 mb-6 text-slate-800 marker:text-slate-500">
-            <li>Texto alternativo.</li>
-            <li>Contraste.</li>
-            <li>Uso correcto de etiquetas.</li>
-            <li>Identificación de formularios.</li>
+          <h3 className="text-base font-bold bg-gray-200 text-gray-800 p-1.5 mb-3 border-l-4 border-gray-500">FALLOS ENCONTRADOS</h3>
+          <ul className="list-disc pl-5 space-y-2 text-gray-700 marker:text-red-500">
+            <li>
+              <strong>Mal uso del HTML:</strong> Tenía casi todo metido dentro de etiquetas genéricas div, lo que está mal porque hay que usar header, nav, main o footer para que tenga sentido.
+            </li>
+            <li>
+              <strong>Imágenes sueltas:</strong> Faltaba el atributo "alt" en las fotos, y sin eso las personas que usan lectores de pantalla no saben de qué trata la imagen.
+            </li>
+            <li>
+              <strong>Poco contraste:</strong> Algunos textos sobre fondos claros no se podían leer muy bien.
+            </li>
+            <li>
+              <strong>Formularios rotos:</strong> Los campos del formulario de contacto no estaban vinculados a su "label", con lo cual era difícil rellenarlos usando tecnología de asistencia.
+            </li>
+            <li>
+              <strong>Foco invisible:</strong> Si apretabas el tabulador en vez de usar el ratón, te perdías porque no sabías dónde estabas.
+            </li>
           </ul>
-
-          <h4 className="font-bold text-lg mb-2 text-slate-900">WAVE & Axe DevTools</h4>
-          <p className="mb-6 text-slate-700">Detectado uso de WAVE y Axe para errores estructurales en vista y DOM.</p>
-
-          <h4 className="font-bold mb-2 text-slate-900">Descripción obligatoria:</h4>
-          <p className="mb-4 text-slate-700 text-justify">
-            En este apartado debéis explicar qué detectó cada herramienta, qué tipo de errores son críticos y cuáles son advertencias. Debéis diferenciar error automático de revisión manual.
-          </p>
         </section>
 
         <section className="mb-8">
-          <h3 className="text-xl font-bold bg-slate-200 text-slate-800 p-2 mb-4 border-l-4 border-slate-600">DESARROLLO TÉCNICO DE LA AUDITORÍA INICIAL</h3>
-          <p className="mb-4 text-slate-700 text-justify">
-            El desarrollo técnico de la auditoría inicial se realizó con el objetivo de identificar barreras reales de accesibilidad antes de aplicar cualquier corrección. Para ello se utilizaron herramientas automáticas y revisión manual.
-          </p>
-          <p className="mb-4 text-slate-700 text-justify">
-            En primer lugar, se ejecutó Lighthouse desde Chrome DevTools. Lighthouse es una herramienta integrada en el navegador que analiza automáticamente diferentes aspectos de una web, incluyendo accesibilidad. Genera una puntuación basada en múltiples comprobaciones técnicas como contraste, etiquetas de formulario, atributos alt y estructura del documento.<br/>
-            El resultado inicial fue 71/100 en accesibilidad.
-          </p>
+          <h3 className="text-base font-bold bg-gray-200 text-gray-800 p-1.5 mb-3 border-l-4 border-gray-500">SOLUCIONES APLICADAS</h3>
           
-          <p className="mb-4 text-slate-700">
-            Este resultado indicaba que existían varios problemas estructurales que debían corregirse.
-          </p>
-          <p className="mb-4 text-slate-700 text-justify">
-            Posteriormente se utilizó WAVE, que es una herramienta visual que identifica errores y advertencias directamente sobre la interfaz. WAVE permitió detectar problemas de contraste y ausencia de etiquetas en formularios.
-          </p>
-          <p className="mb-4 text-slate-700 text-justify">
-            También se utilizó Axe DevTools, una herramienta más técnica que analiza el DOM y detecta incumplimientos específicos de WCAG.
-          </p>
-          <p className="mb-4 text-slate-700 text-justify">
-            Además del análisis automático, se realizó navegación exclusiva con teclado. Esta prueba permitió comprobar que algunos elementos no eran alcanzables mediante Tab y que el foco no era claramente visible.
-          </p>
-          <p className="mb-4 font-bold text-slate-800">
-            El foco es el estado visual que indica qué elemento está activo cuando se navega con teclado.
-          </p>
-          <p className="mb-4 text-slate-700">
-            La auditoría inicial no se limitó a observar puntuaciones, sino que se analizaron causas técnicas de cada problema detectado.
-          </p>
-        </section>
-
-        <section className="mb-8">
-          <h3 className="text-xl font-bold bg-slate-200 text-slate-800 p-2 mb-4 border-l-4 border-slate-600">PROBLEMAS DETECTADOS</h3>
-          <p className="mb-6 text-slate-700">Tras el análisis inicial se identificaron los siguientes problemas principales:</p>
-
-          <h4 className="font-bold underline mb-2 text-rose-800">Estructura semántica insuficiente</h4>
-          <p className="mb-6 text-slate-700 text-justify">
-            Se detectó uso excesivo de etiquetas div para estructurar la página. Div es una etiqueta genérica que no aporta significado estructural. Esto dificulta la interpretación del documento por parte de lectores de pantalla.<br/>
-            HTML semántico implica utilizar etiquetas como header, nav, main y footer que describen el propósito del contenido. Faltaban etiquetas h1.
-          </p>
-
-          <h4 className="font-bold underline mb-2 text-rose-800">Imágenes sin atributo alt</h4>
-          <p className="mb-6 text-slate-700 text-justify">
-            Varias imágenes carecían de atributo alt. El atributo alt proporciona una descripción textual que permite a un lector de pantalla describir la imagen.<br/>
-            Sin alt, el contenido visual se vuelve inaccesible para personas con discapacidad visual.
-          </p>
-
-          <h4 className="font-bold underline mb-2 text-rose-800">Contraste insuficiente</h4>
-          <p className="mb-6 text-slate-700 text-justify">
-            Se detectaron textos con ratio de contraste 3:1, inferior al mínimo requerido 4.5:1.<br/>
-            El ratio es la proporción matemática entre luminosidad del texto y del fondo. Si el contraste es bajo, el texto resulta difícil de leer.
-          </p>
-
-          <h4 className="font-bold underline mb-2 text-rose-800">Formulario sin asociación correcta de labels</h4>
-          <p className="mb-6 text-slate-700 text-justify">
-            En la página de contacto inicial, algunos campos no tenían label correctamente asociado.<br/>
-            Label es la etiqueta textual que describe el propósito del campo de entrada.<br/>
-            Sin asociación correcta, el lector de pantalla no anuncia correctamente el campo.
-          </p>
-
-          <h4 className="font-bold underline mb-2 text-rose-800">Foco no visible</h4>
-          <p className="mb-6 text-slate-700 text-justify">
-            Durante la navegación con teclado, el foco era poco perceptible o inexistente.<br/>
-            Esto impide que el usuario sepa qué elemento está activo.
-          </p>
-        </section>
-
-        <section className="mb-8">
-          <h3 className="text-xl font-bold bg-slate-200 text-slate-800 p-2 mb-4 border-l-4 border-slate-600">MEJORAS IMPLEMENTADAS</h3>
-          
-          <h4 className="font-bold mb-2 mt-4 text-emerald-700">- Refactorización estructural</h4>
-          <p className="mb-4 text-slate-700 text-justify">
-            Se reorganizó el documento utilizando header, nav, main y footer correctamente.<br/>
-            Esto permite que el lector de pantalla identifique regiones principales del documento.<br/>
-            Refactorización significa modificar la estructura del código para mejorar su calidad sin cambiar su funcionalidad externa.
-          </p>
-
-          <h4 className="font-bold mb-2 text-emerald-700">- Formulario accesible completo</h4>
-          <p className="mb-4 text-slate-700 text-justify">
-            Se creó una página de contacto estructurada con campo nombre, campo email y campo mensaje.<br/>
-            Cada input tiene su label asociado correctamente mediante atributo for o asociación equivalente en React.<br/>
-            Se implementó validación accesible con mensajes descriptivos claros. Se añadió aria-live para anunciar dinámicamente errores o confirmaciones.<br/>
-            Aria-live es un atributo que permite que lectores de pantalla detecten cambios en contenido generado sin recargar la página.
-          </p>
-
-          <h4 className="font-bold mb-2 text-emerald-700">- Implementación de skip link</h4>
-          <p className="mb-4 text-slate-700">
-            Se añadió un enlace "Saltar al contenido" al inicio del documento.
-          </p>
-
-          <h4 className="font-bold mb-2 text-emerald-700">- Implementación de prefers-reduced-motion</h4>
-          <p className="mb-4 text-slate-700">
-            Se añadió media query CSS para respetar la preferencia del sistema del usuario.
-          </p>
-
-          <h4 className="font-bold mb-2 text-emerald-700">- Mejora de contraste</h4>
-          <p className="mb-4 text-slate-700">
-            Se ajustaron colores en la paleta principal.<br/>
-            Paleta de colores es el conjunto de colores definidos en el diseño de la interfaz.
-          </p>
-        </section>
-
-        <section className="mb-8">
-          <h3 className="text-xl font-bold bg-slate-200 text-slate-800 p-2 mb-4 border-l-4 border-slate-600">VALIDACIÓN FINAL</h3>
-          <p className="mb-4 text-slate-700">
-            Tras aplicar todas las mejoras se volvió a ejecutar Lighthouse.<br/>
-            <strong className="text-emerald-700 text-lg">Resultado final: 97/100.</strong>
-          </p>
-          <p className="mb-4 text-slate-700">Se repitieron pruebas con WAVE y Axe.</p>
-          
-          <p className="mb-2 text-slate-700">
-            Se realizó navegación manual completa con teclado, verificando:
-          </p>
-          <ul className="list-disc pl-8 mb-4 text-slate-800 marker:text-slate-500">
-            <li>Orden lógico de tabulación.</li>
-            <li>Foco visible.</li>
-            <li>Funcionamiento completo del formulario.</li>
-            <li>Accesibilidad del botón de descarga de PDF.</li>
+          <ul className="list-disc pl-5 space-y-2 text-gray-700 marker:text-green-700">
+            <li>
+              <strong>Arreglé las etiquetas HTML:</strong> Usé etiquetas semánticas y arreglé que el H1 del título fuera realmente un H1.
+            </li>
+            <li>
+              <strong>Formulario funcional:</strong> Ahora todos los inputs están vinculados, y los avisos de error los he preparado con "aria-live" para que el lector los anuncie cantando el mensaje.
+            </li>
+            <li>
+              <strong>Añadí el enlace Skip Link:</strong> Es un enlace oculto arriba del todo que deja a la gente saltarse el menú y pasar al contenido si usan teclado.
+            </li>
+            <li>
+              <strong>Movimiento reducido:</strong> Puse código CSS que detecta si el usuario de Windows o Mac tiene configurado "quitar animaciones" y, si es así, quita mis transiciones para no marear.
+            </li>
+            <li>
+              <strong>Arreglé los colores fuertes:</strong> Aumenté el contraste usando un tono violeta e índigo muy concreto porque tiene un ratio muy alto comparado con blanco.
+            </li>
           </ul>
-          <p className="mb-4 font-bold text-slate-800 text-justify">
-            Orden de tabulación es la secuencia en la que los elementos reciben foco al pulsar Tab.<br/>
-            La mejora no es únicamente numérica. Representa una estructura coherente, formularios funcionales y experiencia inclusiva.
-          </p>
         </section>
 
         <section className="mb-8">
-          <h3 className="text-xl font-bold bg-slate-200 text-slate-800 p-2 mb-4 border-l-4 border-slate-600">GENERACIÓN AUTOMÁTICA DEL INFORME PDF</h3>
+          <h3 className="text-base font-bold bg-gray-200 text-gray-800 p-1.5 mb-3 border-l-4 border-gray-500">COMPROBACIÓN FINAL</h3>
+          <p className="mb-4 text-slate-700">
+            Después de hacer todos mis commits y meter estas soluciones, volví a pasar Lighthouse por la web.
+          </p>
+          <p className="mb-4 text-slate-700">
+            <strong className="text-green-800 text-base">Puntuación de ahora: 97/100.</strong>
+          </p>
           <p className="mb-4 text-slate-700 text-justify">
-            Se implementó generación automática del presente informe mediante html2pdf.js / jsPDF.<br/>
-            JsPDF permite crear un documento PDF dinámicamente desde JavaScript convirtiendo el DOM o un elemento visual directamente a formato escalable y portátil.
-          </p>
-          <p className="mb-4 font-bold text-slate-800">
-            El botón es accesible mediante teclado, tiene foco visible y texto descriptivo claro.<br/>
-            Esto demuestra integración técnica avanzada y automatización documental.
+            La página web por fin es totalmente amigable. Puedes navegarla tocando tabulador y verás una caja bonita que sigue tus pasos para que todo quede clarísimo. De paso, le implementé a la web la librería JS que hace que te estés descargando este mismo reporte automáticamente montado sobre el HTML, así es mucho más práctico.
           </p>
         </section>
-
         <section className="mb-8">
-          <h3 className="text-xl font-bold bg-slate-200 text-slate-800 p-2 mb-4 border-l-4 border-slate-600">CONCLUSIÓN</h3>
-          <p className="leading-relaxed text-slate-700 text-justify">
-            El proyecto ha evolucionado desde una estructura funcional básica hasta una aplicación accesible que cumple criterios WCAG 2.2 nivel AA. Con esto corroboramos nuestro compromiso con la inclusión tecnológica.
+          <h3 className="text-base font-bold bg-gray-200 text-gray-800 p-1.5 mb-3 border-l-4 border-gray-500">CONCLUSIÓN</h3>
+          <p className="mb-4 text-gray-700 text-justify">
+            El proyecto comenzó como una página web sencilla sin ninguna consideración de accesibilidad. En la primera versión los colores, los textos alternativos de las imágenes y la estructura del HTML eran muy básicos y no cumplían con los requisitos de WCAG 2.2 nivel AA. A medida que avanzaba el trabajo, fui añadiendo mejoras paso a paso: cambié los colores para que el contraste fuera suficiente, añadí atributos <code>alt</code> a todas las imágenes, utilicé etiquetas semánticas (<code>header</code>, <code>nav</code>, <code>main</code>, <code>footer</code>) y vinculé correctamente los <code>label</code> con los campos del formulario. También implementé un enlace <em>skip link</em> para que los usuarios de teclado pudieran saltar directamente al contenido, y usé <code>aria-live</code> para anunciar los errores del formulario. Todas estas modificaciones fueron probadas con herramientas automáticas como Lighthouse, WAVE y Axe, y con pruebas manuales de navegación por teclado. El resultado final es una aplicación React que no solo funciona, sino que también es accesible para personas con diferentes capacidades, alcanzando una puntuación de 97/100 en Lighthouse. Con este informe demuestro que, siguiendo una metodología iterativa y documentando cada cambio, es posible transformar una aplicación básica en un producto que cumple con los estándares de accesibilidad web.
           </p>
         </section>
-
       </article>
       
-      {/* Botón flotante al final también para no tener que subir manualmente */}
-      <div className="max-w-4xl mx-auto mt-6 flex justify-center pb-12">
+      <div className="max-w-3xl mx-auto mt-4 flex justify-center pb-8">
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="text-indigo-600 hover:text-indigo-800 underline font-medium focus:outline-none focus:ring-2 focus:ring-indigo-600 rounded"
+          className="text-blue-700 hover:underline text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
         >
           Subir arriba
         </button>

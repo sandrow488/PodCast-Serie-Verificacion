@@ -20,7 +20,6 @@ export default function Contact() {
   const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
 
-  // ── Validación ──────────────────────────────────────────────────────────────
   function validate(fields) {
     const errs = {};
     if (!fields.nombre.trim()) errs.nombre = "El nombre es obligatorio.";
@@ -38,11 +37,9 @@ export default function Contact() {
     return errs;
   }
 
-  // ── Handlers ────────────────────────────────────────────────────────────────
   function handleChange(e) {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
-    // Limpiar error al editar el campo
     if (errors[name]) setErrors((prev) => ({ ...prev, [name]: undefined }));
   }
 
@@ -51,7 +48,6 @@ export default function Contact() {
     const errs = validate(form);
     if (Object.keys(errs).length > 0) {
       setErrors(errs);
-      // Mover el foco al primer campo con error
       const firstErr = Object.keys(errs)[0];
       document.getElementById(firstErr)?.focus();
       return;
@@ -65,26 +61,21 @@ export default function Contact() {
     setSubmitted(false);
   }
 
-  // ── Clases reutilizables ────────────────────────────────────────────────────
   const inputBase =
     "w-full border rounded-lg p-3 text-sm bg-white transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500";
   const inputNormal = `${inputBase} border-slate-300 text-slate-800 placeholder-slate-500`;
   const inputError = `${inputBase} border-red-400 text-slate-800 placeholder-slate-500 bg-red-50`;
 
-  // ── JSX ─────────────────────────────────────────────────────────────────────
   return (
     <div className="min-h-screen bg-slate-50 py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-2xl mx-auto">
-        {/* Encabezado de página */}
         <header className="mb-10 text-center">
-          <h1 className="text-4xl font-black text-slate-800 mb-3">Contacto</h1>
+          <h1 className="text-4xl font-black text-slate-800 mb-3">Escríbenos</h1>
           <p className="text-slate-700 text-base max-w-lg mx-auto">
-            ¿Tienes una sugerencia, quieres colaborar o simplemente saludarnos?
-            Rellena el formulario y te responderemos lo antes posible.
+            ¿Quieres decirnos algo? Rellena este formulario rápido y te contactaremos enseguida.
           </p>
         </header>
 
-        {/* ─── Mensaje de éxito ─────────────────────────────────────────────── */}
         {submitted ? (
           <div
             role="alert"
@@ -106,11 +97,10 @@ export default function Contact() {
               />
             </svg>
             <h2 className="text-2xl font-bold text-green-800 mb-2">
-              ¡Mensaje enviado!
+              ¡Mensaje enviado correctamente!
             </h2>
             <p className="text-green-700 mb-6">
-              Gracias por escribirnos. Revisaremos tu mensaje y te responderemos
-              pronto.
+              Gracias por mandarnos el formulario. Lo revisaremos lo antes posible.
             </p>
             <button
               type="button"
@@ -122,7 +112,6 @@ export default function Contact() {
             </button>
           </div>
         ) : (
-          /* ─── Formulario ──────────────────────────────────────────────────── */
           <div className="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm relative">
             <div aria-live="assertive" className="sr-only">
               {Object.keys(errors).length > 0 
@@ -135,7 +124,7 @@ export default function Contact() {
               aria-label="Formulario de contacto"
             >
               <fieldset className="border-0 p-0 m-0">
-                <legend className="sr-only">Datos del mensaje de contacto</legend>
+                <legend className="sr-only">Rellena tus datos</legend>
               <div className="mb-5">
                 <label
                   htmlFor="nombre"
@@ -153,7 +142,7 @@ export default function Contact() {
                   value={form.nombre}
                   onChange={handleChange}
                   className={errors.nombre ? inputError : inputNormal}
-                  placeholder="Ej. Juan Pérez"
+                  placeholder="Tu nombre y apellidos"
                   autoComplete="name"
                   aria-required="true"
                   aria-describedby={errors.nombre ? "nombre-error" : undefined}
@@ -181,13 +170,12 @@ export default function Contact() {
                 )}
               </div>
 
-              {/* Email */}
               <div className="mb-5">
                 <label
                   htmlFor="email"
                   className="block text-sm font-semibold text-slate-700 mb-1.5"
                 >
-                  Correo electrónico{" "}
+                  Email de contacto{" "}
                   <span className="text-red-500" aria-hidden="true">
                     *
                   </span>
@@ -199,7 +187,7 @@ export default function Contact() {
                   value={form.email}
                   onChange={handleChange}
                   className={errors.email ? inputError : inputNormal}
-                  placeholder="juan@ejemplo.com"
+                  placeholder="ejemplo@correo.com"
                   autoComplete="email"
                   aria-required="true"
                   aria-describedby={errors.email ? "email-error" : undefined}
@@ -227,7 +215,6 @@ export default function Contact() {
                 )}
               </div>
 
-              {/* Asunto (select) */}
               <div className="mb-5">
                 <label
                   htmlFor="asunto"
@@ -276,7 +263,6 @@ export default function Contact() {
                 )}
               </div>
 
-              {/* Mensaje (textarea) */}
               <div className="mb-6">
                 <label
                   htmlFor="mensaje"
@@ -294,7 +280,7 @@ export default function Contact() {
                   value={form.mensaje}
                   onChange={handleChange}
                   className={`${errors.mensaje ? inputError : inputNormal} resize-y`}
-                  placeholder="Cuéntanos qué tienes en mente… (mínimo 20 caracteres)"
+                  placeholder="Escribe tu mensaje aquí..."
                   aria-required="true"
                   aria-describedby={
                     errors.mensaje ? "mensaje-error" : "mensaje-hint"
@@ -322,7 +308,7 @@ export default function Contact() {
                   </p>
                 ) : (
                   <p id="mensaje-hint" className="mt-1 text-xs text-slate-700">
-                    Mínimo 20 caracteres. Actualmente:{" "}
+                    Escribe al menos 20 caracteres. Llevas{" "}
                     {form.mensaje.trim().length}
                   </p>
                 )}
@@ -330,15 +316,13 @@ export default function Contact() {
 
               </fieldset>
 
-              {/* Nota campos obligatorios */}
               <p className="text-xs text-slate-700 mb-5">
                 <span className="text-red-500" aria-hidden="true">
                   *
                 </span>{" "}
-                Campos obligatorios
+                Son obligatorios
               </p>
 
-              {/* Botón enviar */}
               <button
                 type="submit"
                 className="w-full flex items-center justify-center gap-2 bg-indigo-600 text-white font-bold py-3 px-6 rounded-xl shadow hover:bg-indigo-700 active:bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors text-sm uppercase tracking-wide"
@@ -357,13 +341,12 @@ export default function Contact() {
                     d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                   />
                 </svg>
-                Enviar mensaje
+                Enviar ahora
               </button>
             </form>
           </div>
         )}
 
-        {/* Info adicional */}
         <aside
           className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-4 text-center"
           aria-label="Información de contacto alternativa"
@@ -377,8 +360,8 @@ export default function Contact() {
             },
             {
               icon: "🏫",
-              label: "Estudios",
-              value: "2º DAW · Sandro Pegoraro",
+              label: "Autor",
+              value: "Sandro Pegoraro",
             },
           ].map((item) => (
             <div
