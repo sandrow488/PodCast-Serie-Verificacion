@@ -617,9 +617,12 @@ export function generateAccessibilityReport() {
     pageFooter(doc, p, total);
   }
 
-  doc.save(
-    `informe-accesibilidad-${REPORT_DATA.autor.toLowerCase().replace(' ', '_')}.pdf`
-  );
+  // Generar nombre de archivo limpio
+  const cleanName = REPORT_DATA.autor.toLowerCase().replace(/\s+/g, '_');
+  const fileName = `informe-accesibilidad-${cleanName}.pdf`;
+  
+  console.log('Generando PDF:', fileName);
+  doc.save(fileName);
 }
 
 // ── Componente botón ─────────────────────────────────────────────────────────
