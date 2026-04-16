@@ -52,6 +52,9 @@ export default function App() {
                     Contacto
                   </Link>
                 </li>
+                <li>
+                  <Link to="/informe-documento" className="text-indigo-100 hover:text-white hover:bg-white/10 px-4 py-2 rounded-full transition-all focus:outline-none focus:ring-2 focus:ring-white">Informe</Link>
+                </li>
               </ul>
             </nav>
           </div>
