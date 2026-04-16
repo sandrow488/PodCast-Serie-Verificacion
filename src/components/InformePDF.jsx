@@ -42,7 +42,7 @@ export default function InformePDF() {
       >
         <header className="mb-6 border-b border-gray-300 pb-3">
           <h1 className="text-2xl font-bold mb-1 text-black">INFORME DE ACCESIBILIDAD WEB</h1>
-          <h2 className="text-base mb-4 text-black">Proyecto React - Nivel AA (WCAG 2.2)</h2>
+          <h2 className="text-base mb-4 text-black">Proyecto React</h2>
           <div className="text-sm mt-3 grid grid-cols-1 sm:grid-cols-2 gap-1 bg-white p-3">
             <p><strong>Alumno:</strong> Sandro Pegoraro</p>
             <p><strong>Curso:</strong> 2º DAW</p>
