@@ -58,7 +58,6 @@ export default function InformePDF() {
 
             <p><strong>Alumno:</strong> Sandro Pegoraro</p>
             <p><strong>Curso:</strong> 2º DAW</p>
-            <p><strong>Fecha:</strong> {new Date().toLocaleDateString('es-ES')}</p>
             <p><strong>Módulo:</strong> Diseño de Interfaces Web</p>
             <p className="col-span-1 md:col-span-2"><strong>Proyecto:</strong> Mis Series Imprescindibles</p>
           </div>
